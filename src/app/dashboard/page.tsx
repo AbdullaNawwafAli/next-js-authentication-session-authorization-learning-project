@@ -8,7 +8,6 @@ export default function Dashboard() {
         alignItems: "center",
         height: "100vh",
         backgroundColor: "black",
-        padding: "20px",
         borderBottom: "100%",
         display: "flex",
         flexDirection: "column",
