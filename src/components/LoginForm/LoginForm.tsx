@@ -5,6 +5,8 @@ import React, { useActionState } from "react";
 import { useFormStatus } from "react-dom";
 
 
+
+
 const SubmitButton = () => {
   const { pending } = useFormStatus();
 
@@ -16,9 +18,11 @@ const SubmitButton = () => {
 };
 
 export const LoginForm = () => {
+ 
 
   const [state, loginAction] = useActionState(login,undefined)
-
+  const emailError = state?.errors?.email || []
+  const passwordError = state?.errors?.password || []
   return (
    
     
@@ -50,8 +54,8 @@ export const LoginForm = () => {
             },
             
           }}
-          error = {!!state?.errors.email}
-          helperText = {state?.errors.email|| " "}
+          error = {!!emailError[0]}
+          helperText = {emailError[0]|| " "}
   />
 
         
@@ -82,8 +86,8 @@ export const LoginForm = () => {
             },
             
           }}
-          error = {!!state?.errors.password}
-          helperText = {state?.errors.password || " "}
+          error = {!!passwordError[0]}
+          helperText = {passwordError[0] || " "}
         />
 
         <SubmitButton />
