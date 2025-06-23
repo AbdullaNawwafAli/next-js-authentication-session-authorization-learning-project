@@ -11,11 +11,10 @@ const testUser = {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log('Received body:', body);
 
     const result = LoginSchema.safeParse(body)
-    const result2 = await fetch("https://nawwaftestapi.free.beeceptor.com/api/login")
-    
+    const result2 = await fetch("https://nawwaftestapi.free.beeceptor.com/api/logincheck")
+    const data = await result2.json()
 
     if (!result.success) {
      return NextResponse.json({
@@ -25,7 +24,8 @@ export async function POST(req: Request) {
 
     const { email, password} = body;
     
-    if ((email == testUser.email && password == testUser.password) || result2.status == 200)  {
+    
+    if ((email == data.email && password == data.password))  {
       return NextResponse.json({ id: testUser.id });
     }
     else {

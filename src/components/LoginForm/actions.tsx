@@ -26,10 +26,6 @@ export async function login(prevState: any, formData: FormData) {
     credentials: 'include',
   });
 
-  
-
- // console.log('Sending:', { email: emailInput, password: passwordInput });
-
   if (res.ok) {
     const data = await res.json();
     await createSession(data.id);
