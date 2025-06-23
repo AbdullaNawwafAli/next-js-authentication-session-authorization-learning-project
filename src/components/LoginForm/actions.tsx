@@ -10,9 +10,7 @@ export async function login(prevState: any, formData: FormData) {
   const passwordInput = String(formData.get("password") || "").trim();
 
   const result = LoginSchema.safeParse({ email: emailInput, password: passwordInput });
-
   
-
   if (!result.success) {
     return {
       errors: result.error.flatten().fieldErrors,
