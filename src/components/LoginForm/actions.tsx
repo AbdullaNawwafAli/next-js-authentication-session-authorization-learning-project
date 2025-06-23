@@ -3,15 +3,6 @@ import { redirect } from "next/navigation";
 import { createSession, deleteSession } from "@/lib/session/session";
 import  { LoginSchema} from "@/lib/validation/loginSchema"
 
-// type LoginSchemaType = z.infer<typeof LoginSchema>;
-
-// const testUser = {
-//   id: "1",
-//   email: "admin@gmail.com",
-//   password: "12345678",
-// };
-
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function login(prevState: any, formData: FormData) {
 
@@ -20,8 +11,7 @@ export async function login(prevState: any, formData: FormData) {
 
   const result = LoginSchema.safeParse({ email: emailInput, password: passwordInput });
 
-  //const result2 = await fetch("https://nawwaftestapi.free.beeceptor.com/api/login/")
-  //console.log(result);
+  
 
   if (!result.success) {
     return {

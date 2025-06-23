@@ -1,5 +1,4 @@
-// import { createSession } from '@/lib/session/session';
-//import { LoginSchema } from '@/lib/validation/loginSchema';
+'use server'
 import { LoginSchema } from '@/lib/validation/loginSchema';
 import { NextResponse } from 'next/server';
 
@@ -15,6 +14,8 @@ export async function POST(req: Request) {
     console.log('Received body:', body);
 
     const result = LoginSchema.safeParse(body)
+    const result2 = await fetch("https://nawwaftestapi.free.beeceptor.com/api/login")
+    
 
     if (!result.success) {
      return NextResponse.json({
@@ -24,7 +25,7 @@ export async function POST(req: Request) {
 
     const { email, password} = body;
     
-    if (email == testUser.email && password == testUser.password) {
+    if ((email == testUser.email && password == testUser.password) || result2.status == 200)  {
       return NextResponse.json({ id: testUser.id });
     }
     else {
