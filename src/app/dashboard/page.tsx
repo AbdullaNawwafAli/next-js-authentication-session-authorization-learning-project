@@ -1,4 +1,7 @@
-import { Box, Button, Link, Typography } from "@mui/material";
+import LogoutButton from "@/components/LogOutButton";
+import WebsiteHeader from "@/components/WebsiteHeader";
+
+import { Box, Link, Typography } from "@mui/material";
 
 export default function Dashboard() {
   return (
@@ -13,10 +16,11 @@ export default function Dashboard() {
         flexDirection: "column",
       }}
     >
+      <WebsiteHeader />
       <Typography variant="h1">you logged in</Typography>
       
       <Link href="/">
-      <Button>Log Out</Button>
+      <LogoutButton />
       </Link>
       
     </Box>
