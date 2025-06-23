@@ -50,8 +50,8 @@ export const LoginForm = () => {
             },
             
           }}
-          error = {!!state?.errors.email}
-          helperText = {state?.errors.email|| " "}
+          error = {!!state?.errors?.email}
+          helperText = {state?.errors?.email|| " "}
   />
 
         
@@ -82,8 +82,8 @@ export const LoginForm = () => {
             },
             
           }}
-          error = {!!state?.errors.password}
-          helperText = {state?.errors.password || " "}
+          error = {!!state?.errors?.password}
+          helperText = {state?.errors?.password || " "}
         />
 
         <SubmitButton />
