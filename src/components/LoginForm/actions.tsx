@@ -5,15 +5,16 @@ import  { LoginSchema} from "@/lib/validation/loginSchema"
 
 // type LoginSchemaType = z.infer<typeof LoginSchema>;
 
-const testUser = {
-  id: "1",
-  email: "admin@gmail.com",
-  password: "12345678",
-};
+// const testUser = {
+//   id: "1",
+//   email: "admin@gmail.com",
+//   password: "12345678",
+// };
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export async function login(prevState: any, formData: FormData) {
+
   const emailInput = String(formData.get("email") || "").trim();
   const passwordInput = String(formData.get("password") || "").trim();
 
@@ -28,12 +29,6 @@ export async function login(prevState: any, formData: FormData) {
     };
   }
 
-  // if (result.data.email === testUser.email && result.data.password === testUser.password) {
-  //   const response = NextResponse.json({ message: 'Login successful' });
-  //   await createSession(testUser.id);
-  //   return response;
-  // }
-
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -41,14 +36,35 @@ export async function login(prevState: any, formData: FormData) {
     credentials: 'include',
   });
 
-  console.log('Sending:', { email: emailInput, password: passwordInput });
+  
+
+ // console.log('Sending:', { email: emailInput, password: passwordInput });
 
   if (res.ok) {
-    await createSession(testUser.id);
+    const data = await res.json();
+    await createSession(data.id);
     redirect('/dashboard');
   }
+  if (res.status === 401) {
+    return {errors: {
+        email: ["Invalid email or password"],
+        password: [" "],
+      },
+    }
+  }
 
-  // const data = await res.json();
+  if (!res.ok) {
+    return {
+      ok: false,
+      errors: {
+        email: 'Something went wrong',
+        password: 'Something went wrong',
+      },
+    };
+  }
+
+
+  // 
   // return {
   //   ok: false,
   //   message: data.message || 'Login failed',
