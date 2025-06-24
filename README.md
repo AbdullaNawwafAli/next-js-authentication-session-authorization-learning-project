@@ -31,5 +31,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Data should always be fetched and handled on the server side first for security.
 - Is the way i've handled the token secure? how would this application be vulnerable? I've made sure i handled the token on the server-side as well when decrypting and even assigning the token.
 - I added doubled zod verification in the action for the login form as well as in the API route call to make sure nothing can be injected. (is this good practice as well as secure?)
+- Where should the middleware file be located? does it expose the security of the application
+- Where should server actions be located? next to component that uses it? or in a separate actions folder?
 - Overall i've been given advice that this is a good boiler plate i should keep for future reference or use hence why i will be keeping it.
 
